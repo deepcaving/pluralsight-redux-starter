@@ -57,6 +57,7 @@ const generateId = (course) => {
 
 class CourseApi {
   static getAllCourses() {
+    debugger;
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(Object.assign([], courses));

@@ -9,6 +9,7 @@ import {loadCourses} from './actions/courseActions';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const store = configureStore();
+store.dispatch(loadCourses());
 
 render (
     <Provider store={store}>
