@@ -2,12 +2,11 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import * as courseActions from '../../actions/courseActions';
 import {bindActionCreators} from 'redux';
+import CourseList from './CourseList';
 
 class CoursesPage extends React.Component {
-    constructor(props, context){
+    constructor(props, context) {
         super(props, context);
-        debugger;
-        this.courseRow = this.courseRow.bind(this);
 }
     
     courseRow(course, index) {
@@ -15,12 +14,11 @@ class CoursesPage extends React.Component {
     }
 
     render() {
-        debugger;
         const { courses } = this.props;
         return (
             <div>
                 <h1>Courses</h1>
-                {this.props.courses.map(this.courseRow)}
+                <CourseList courses={courses}/>
             </div>
         );
     }
@@ -28,11 +26,10 @@ class CoursesPage extends React.Component {
 
 CoursesPage.propTypes = {    
     courses: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
-    debugger;
     return {
         courses: state.courses
     };
