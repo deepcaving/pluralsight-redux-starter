@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 
 const SelectInput = ({name, label, onChange, defaultOption, value, error, options}) => {
     return(
-        <div className="from-group">
+        <div className="form-group">
             <label htmlFor={name}>{label}</label>
             <div className="field">
                 {/* Note, value is set here rather than on the option - docs: https://facebook.github....*/}

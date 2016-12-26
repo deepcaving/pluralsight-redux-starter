@@ -8,37 +8,63 @@ class ManageCoursePage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {
-            course: Object.assign({}, this.props.course),
+        this.state = {            
+            course: Object.assign({}, props.course),
             errors: {}
         };
+
+        this.updateCourseState = this.updateCourseState.bind(this);
+        this.saveCourse = this.saveCourse.bind(this);
     }
     
+    updateCourseState(event) {debugger;
+        const field = event.target.name;
+        let course = this.state.course;
+        course[field] = event.target.value;
+        return this.setState({course: course});
+    }
+
+    saveCourse(event) {
+        event.preventDefault();
+        this.props.actions.saveCourse(this.state.course);
+    }
+
     render() {
         return (
-            <div>
-                <CourseForm
-                    allAuthors={[]}
-                    course={this.state.course} 
-                    errors={this.state.errors}
-                />
-            </div>
+            <CourseForm
+                allAuthors={this.props.authors}
+                onChange={this.updateCourseState}
+                onSave={this.saveCourse}
+                course={this.state.course} 
+                errors={this.state.errors}
+            />
         );
     }
 }
 
-ManageCoursePage.PropTypes = {
-    course: PropTypes.object.isRequired
+ManageCoursePage.propTypes = {
+    course: PropTypes.object.isRequired,
+    authors: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => {
+function mapStateToProps(state, ownProps) {
     let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
+
+    const authorsFormattedForDropdown = state.authors.map(author => {
+        return {
+            value: author.id,
+            text: author.firstName + ' ' + author.lastName
+        };
+    });
+    
     return {
-        course: course
+        course: course,
+        authors: authorsFormattedForDropdown
     };
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(courseActions, dispatch)
     };

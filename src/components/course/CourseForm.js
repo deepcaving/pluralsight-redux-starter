@@ -10,8 +10,8 @@ const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors}) => 
                 name="title"
                 label="Title"
                 value={course.title}
-                onchange={onChange}
-                error={errors.title}/>
+                onChange={onChange}
+                error={errors.title} />
             
             <SelectInput
                 name="authorId"
@@ -24,7 +24,7 @@ const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors}) => 
 
             <TextInput
                 name="category"
-                label="category"
+                label="Category"
                 value={course.category}
                 onChange={onChange}
                 error={errors.category} />
