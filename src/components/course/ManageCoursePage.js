@@ -51,7 +51,7 @@ class ManageCoursePage extends React.Component {
         this.context.router.push('/courses');
     }
     
-    render() {
+    render() { // all this stuff is sent to the CourseForm
         return (
             <CourseForm
                 allAuthors={this.props.authors}
